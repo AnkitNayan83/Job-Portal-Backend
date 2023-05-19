@@ -42,6 +42,9 @@ const options = {
       {
         url: "http://localhost:8080",
       },
+      {
+        url: "https://job-portal-backend-beta.vercel.app/",
+      },
     ],
   },
   apis: ["./route/*.js"],
