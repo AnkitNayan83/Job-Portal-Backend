@@ -31,6 +31,9 @@ dotenv.config();
 connectDb();
 
 // documentation config
+const CSS_URL =
+  "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.min.css";
+
 const options = {
   definition: {
     openapi: "3.0.0",
@@ -41,9 +44,11 @@ const options = {
     servers: [
       {
         url: "http://localhost:8080",
+        dexcription: "local devlopment",
       },
       {
         url: "https://job-portal-backend-beta.vercel.app/",
+        description: "production",
       },
     ],
   },
@@ -70,7 +75,11 @@ app.use("/api/v1/job", jobRoutes);
 app.use("/api/v1/application", applicationRoutes);
 
 // doc home route
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(spec));
+app.use(
+  "/api-docs",
+  swaggerUi.serve,
+  swaggerUi.setup(spec, { customCssUrl: CSS_URL })
+);
 
 // error middleWare
 app.use(errorMiddelware);
