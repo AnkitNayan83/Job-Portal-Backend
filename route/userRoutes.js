@@ -56,10 +56,40 @@ const router = express.Router();
 router.put("/update-user", userAuth, updateUser);
 
 // Get User('s)
+/**
+ * @swagger
+ * /api/v1/user/all:
+ *    get:
+ *      summary: get all user
+ *      tags: [UserRoute]
+ *      responses:
+ *        200:
+ *          description: user fetched successfully
+ *          content:
+ *            application/json:
+ *              schema:
+ *                $ref: '#/components/schemas/User'
+ *        500:
+ *          description: internal serevr error
+ */
 router.get("/all", getAllUser);
 router.get("/:id", getUser);
 
 // Delete User
+/**
+ * @swagger
+ * /api/v1/user/delete-user:
+ *    delete:
+ *      summary: delete user
+ *      security:
+ *        bearerAuth: []
+ *      tags: [UserRoute]
+ *      responses:
+ *        200:
+ *          description: user deleted successfully
+ *        500:
+ *          description: internal serevr error
+ */
 router.delete("/delete-user", userAuth, deleteUser);
 
 export default router;
