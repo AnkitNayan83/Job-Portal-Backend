@@ -26,8 +26,8 @@ export const register = async (req, res, next) => {
       name: user.name,
       email: user.email,
       location: user.location,
+      token,
     },
-    token,
   });
 };
 
@@ -38,7 +38,7 @@ export const login = async (req, res, next) => {
 
   if (!email) return next("email is required");
 
-  const user = await User.findOne({ email }).select("+password");
+  let user = await User.findOne({ email }).select("+password");
 
   if (!user) return next("wrong email id or password");
 
@@ -49,6 +49,8 @@ export const login = async (req, res, next) => {
   const token = user.createJWT();
 
   user.password = undefined;
+
+  user = { ...user._doc, token };
 
   res.status(200).json({
     message: "logged in successfully",
