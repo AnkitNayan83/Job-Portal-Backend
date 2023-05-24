@@ -35,3 +35,23 @@ export const deleteUser = async (req, res, next) => {
   await User.findByIdAndDelete({ _id: req.user.userId });
   res.status(200).json({ message: "user deleted!!" });
 };
+
+export const getUserData = async (req, res, next) => {
+  try {
+    const user = await User.findById({ _id: req.user.userId });
+    if (!user) {
+      return res.status(200).send({
+        message: "user not found",
+        success: false,
+      });
+    } else {
+      user.password = undefined;
+      res.status(200).send({ success: true, user });
+    }
+  } catch (error) {
+    console.log(error);
+    res
+      .status(500)
+      .send({ message: "auth error", success: false, error: error.message });
+  }
+};

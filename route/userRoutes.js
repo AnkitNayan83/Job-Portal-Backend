@@ -3,6 +3,7 @@ import {
   deleteUser,
   getAllUser,
   getUser,
+  getUserData,
   updateUser,
 } from "../controller/userController.js";
 import userAuth from "../middlewares/authMiddleware.js";
@@ -91,5 +92,7 @@ router.get("/:id", getUser);
  *          description: internal serevr error
  */
 router.delete("/delete-user", userAuth, deleteUser);
+
+router.post("/get-user", userAuth, getUserData);
 
 export default router;
