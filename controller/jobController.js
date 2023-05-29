@@ -90,10 +90,11 @@ export const getAllJobs = async (req, res, next) => {
   const limit = Number(req.query.limit) || 10;
   const skip = (page - 1) * limit;
 
-  queryResult = queryResult.skip(skip).limit(limit);
-
   // jobs count
   const totalJobs = await Job.countDocuments(queryResult);
+
+  queryResult = queryResult.skip(skip).limit(limit);
+
   const numOfPage = Math.ceil(totalJobs / limit);
   const jobs = await queryResult; //using await here as sort and skip will only work when we are fetching data not after that
 
