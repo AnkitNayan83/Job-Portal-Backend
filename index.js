@@ -69,6 +69,7 @@ app.use(
     origin: "https://job-portal-frontend-two.vercel.app",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 ); //to use cross origin sites
 app.use(morgan("dev")); //logs which api route has been called and other info
