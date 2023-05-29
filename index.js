@@ -64,7 +64,12 @@ app.use(mongoSanitize()); //to secure database
 app.use(helmet()); //to secure header data
 app.use(xss()); //to prevent from cross site scripting
 app.use(express.json()); //to use json data in our application
-app.use(cors()); //to use cross origin sites
+app.use(
+  cors({
+    origin: "https://job-portal-frontend-two.vercel.app",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+  })
+); //to use cross origin sites
 app.use(morgan("dev")); //logs which api route has been called and other info
 app.use("/uploads", express.static("uploads")); //to serve uploaded file
 
