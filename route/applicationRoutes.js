@@ -51,7 +51,7 @@ router.post(
   "/apply/:jobId",
   userAuth,
   checkApplied,
-  upload.single("resume"),
+  // upload.single("resume"),
   createApplication
 );
 

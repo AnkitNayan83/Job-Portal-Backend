@@ -7,8 +7,8 @@ export const createApplication = async (req, res, next) => {
   const jobId = req.params.jobId;
 
   const application = new Application({ userId, jobId });
-  if (req.file) application.resume = req.file.path;
-  else return next("you need to upload your resume in PDF format");
+  // if (req.file) application.resume = req.file.path;
+  // else return next("you need to upload your resume in PDF format");
   const savedApp = await application.save();
   res.status(201).json({
     message: "Your application was submitted",
