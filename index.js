@@ -66,7 +66,7 @@ app.use(xss()); //to prevent from cross site scripting
 app.use(express.json()); //to use json data in our application
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "https://job-portal-frontend-two.vercel.app",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
